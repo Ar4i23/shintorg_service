@@ -33,13 +33,23 @@
   text-decoration: underline;
 }
 
+/* ---------- Мобильные: карусель ---------- */
 .reviews__list {
-  display: grid;
-  gap: 18px;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; /* карточки «прилипают» */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
-/* ---------- Карточка отзыва ---------- */
+.reviews__list::-webkit-scrollbar {
+  display: none;
+}
+
 .review-card {
+  flex: 0 0 100%; /* одна карточка на экран */
+  scroll-snap-align: center;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -47,16 +57,35 @@
   background: var(--color-surface);
   border: 1px solid var(--color-line);
   border-radius: var(--radius);
+}
+
+/* ---------- Точки ---------- */
+.reviews__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.reviews__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: var(--color-line);
+  cursor: pointer;
   transition:
-    transform 0.2s,
-    border-color 0.2s;
+    background 0.2s,
+    transform 0.2s;
 }
 
-.review-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--color-accent);
+.reviews__dot--active {
+  background: var(--color-accent);
+  transform: scale(1.25);
 }
 
+/* ---------- Карточка ---------- */
 .review-card__head {
   display: flex;
   align-items: center;
@@ -81,7 +110,6 @@
   font-weight: 700;
   font-size: 15px;
 }
-
 .review-card__meta {
   color: var(--color-muted);
   font-size: 12px;
@@ -103,10 +131,18 @@
   flex: 1;
 }
 
-/* Планшет: 2 колонки, десктоп: 3 */
+/* ---------- Планшет и десктоп: снова сетка, карусель выключена ---------- */
 @media (min-width: 768px) {
   .reviews__list {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    overflow: visible;
+  }
+  .review-card {
+    flex: none;
+  }
+  .reviews__dots {
+    display: none;
   }
 }
 

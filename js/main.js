@@ -7,6 +7,7 @@ import { initTabs } from "./modules/tabs.js";
 import { initPreselect } from "./modules/preselect.js";
 import { initForm } from "./modules/form.js";
 import { initCalendar } from "./modules/calendar.js";
+import { initReviewsSlider } from "./modules/slider.js";
 
 initBurger();
 initNavbar();
@@ -17,3 +18,4 @@ initTabs();
 initPreselect();
 initForm();
 initCalendar();
+initReviewsSlider();
