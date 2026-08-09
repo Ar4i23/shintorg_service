@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Вася починит! — автосервис в Воронеже | Регион 36</title>
+    <meta
+      name="description"
+      content="Автосервис «Вася починит!» в Воронеже: ТО, ремонт ходовой и двигателя, шиномонтаж, развал-схождение, автоэлектрик, химчистка. Гарантия 1 год."
+    />
+    <link rel="icon" type="image/png" href="img/logo.png?v=2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Шапка: лого + навигация + кнопка -->
+    <header class="header">
+      <div class="header__inner container">
+        <a class="header__logo" href="#hero">
+          <img
+            class="header__logo-img"
+            src="img/logo.png"
+            alt="Автосервис «Вася починит!», регион 36"
+          />
+        </a>
+
+        <nav class="header__nav" data-nav aria-label="Основная навигация">
+          <ul class="header__nav-list">
+            <li>
+              <a class="header__nav-item header__nav-item--active" href="#hero"
+                >Главная</a
+              >
+            </li>
+            <li><a class="header__nav-item" href="#services">Услуги</a></li>
+            <li><a class="header__nav-item" href="#guarantee">Гарантия</a></li>
+            <li><a class="header__nav-item" href="#reviews">Отзывы</a></li>
+            <li><a class="header__nav-item" href="#contacts">Контакты</a></li>
+          </ul>
+        </nav>
+
+        <div class="header__actions">
+          <button
+            class="button header__cta"
+            type="button"
+            data-scroll="#request"
+          >
+            Записаться
+          </button>
+          <button
+            class="header__burger"
+            type="button"
+            data-burger
+            aria-label="Открыть меню"
+            aria-expanded="false"
+          >
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Герой -->
+    <section class="hero" id="hero">
+      <div class="hero__inner container">
+        <div class="hero__content">
+          <h1 class="hero__title">
+            Сломался? <span class="hero__accent">Вася починит!</span>
+          </h1>
+          <p class="hero__text">
+            Ремонт и обслуживание автомобилей в Воронеже. Честные цены, гарантия
+            1 год и мастер, который лично отвечает за результат.
+          </p>
+          <button
+            class="button hero__button"
+            type="button"
+            data-scroll="#request"
+          >
+            Записаться
+          </button>
+        </div>
+        <figure class="hero__photo" data-reveal>
+          <img
+            src="img/master_1.png"
+            alt="Мастер автосервиса «Вася починит!»"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <!-- Прайс с категориями -->
+    <section class="price" id="services">
+      <div class="container">
+        <h2 class="price__title">Что Вася чинит</h2>
+
+        <div class="price__tabs" role="tablist" aria-label="Категории услуг">
+          <button
+            class="price__tab price__tab--active"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            data-tab="diag"
+          >
+            Диагностика
+          </button>
+          <button
+            class="price__tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-tab="wheels"
+          >
+            Колёса и диски
+          </button>
+          <button
+            class="price__tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-tab="to"
+          >
+            ТО и жидкости
+          </button>
+          <button
+            class="price__tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-tab="susp"
+          >
+            Ходовая и рулевое
+          </button>
+          <button
+            class="price__tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-tab="engine"
+          >
+            Двигатель и КПП
+          </button>
+          <button
+            class="price__tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-tab="brakes"
+          >
+            Тормоза
+          </button>
+          <button
+            class="price__tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-tab="electro"
+          >
+            Электрика и кондиционер
+          </button>
+          <button
+            class="price__tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-tab="body"
+          >
+            Кузов и уход
+          </button>
+          <button
+            class="price__tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-tab="other"
+          >
+            Прочее
+          </button>
+        </div>
+
+        <div class="price__panels">
+          <div class="price__panel" role="tabpanel" data-panel="diag">
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Диагностика ходовой части</span>
+              </div>
+              <span class="price__value">1 200 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Диагностика ходовой части"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Диагностика двигателя</span>
+              </div>
+              <span class="price__value">1 200 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Диагностика двигателя"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Компьютерная диагностика</span>
+              </div>
+              <span class="price__value">1 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Компьютерная диагностика"
+              >
+                Записаться
+              </button>
+            </div>
+          </div>
+
+          <div class="price__panel" role="tabpanel" data-panel="wheels" hidden>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Сход-развал</span
+                ><span class="price__note">цена за одну ось</span>
+              </div>
+              <span class="price__value">2 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Сход-развал"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Шиномонтаж</span>
+              </div>
+              <span class="price__value">от 2 600 ₽</span
+              ><button class="price__book" type="button" data-book="Шиномонтаж">
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Правка литых дисков</span>
+              </div>
+              <span class="price__value">от 2 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Правка литых дисков"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Прокатка штампованных дисков</span>
+              </div>
+              <span class="price__value">от 700 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Прокатка штампованных дисков"
+              >
+                Записаться
+              </button>
+            </div>
+          </div>
+
+          <div class="price__panel" role="tabpanel" data-panel="to" hidden>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена масла</span
+                ><span class="price__note"
+                  >+500 ₽ снятие/установка защиты. Масло куплено у нас — замена
+                  бесплатно, оплачивается только защита.</span
+                >
+              </div>
+              <span class="price__value">от 1 100 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена масла"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена антифриза аппаратом</span>
+              </div>
+              <span class="price__value">2 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена антифриза аппаратом"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name"
+                  >Частичная замена масла в коробке</span
+                >
+              </div>
+              <span class="price__value">от 2 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Частичная замена масла в коробке"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена тормозной жидкости</span>
+              </div>
+              <span class="price__value">от 2 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена тормозной жидкости"
+              >
+                Записаться
+              </button>
+            </div>
+          </div>
+
+          <div class="price__panel" role="tabpanel" data-panel="susp" hidden>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена ступичного подшипника</span>
+              </div>
+              <span class="price__value">от 2 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена ступичного подшипника"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена рулевых наконечников</span>
+              </div>
+              <span class="price__value">от 2 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена рулевых наконечников"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена шаровой опоры</span>
+              </div>
+              <span class="price__value">от 1 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена шаровой опоры"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена сайлентблоков рычага</span>
+              </div>
+              <span class="price__value">от 4 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена сайлентблоков рычага"
+              >
+                Записаться
+              </button>
+            </div>
+          </div>
+
+          <div class="price__panel" role="tabpanel" data-panel="engine" hidden>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена ГРМ с помпой</span>
+              </div>
+              <span class="price__value">от 9 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена ГРМ с помпой"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена сцепления</span>
+              </div>
+              <span class="price__value">от 8 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена сцепления"
+              >
+                Записаться
+              </button>
+            </div>
+          </div>
+
+          <div class="price__panel" role="tabpanel" data-panel="brakes" hidden>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена передних колодок</span>
+              </div>
+              <span class="price__value">1 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена передних колодок"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена задних колодок</span>
+              </div>
+              <span class="price__value">от 2 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена задних колодок"
+              >
+                Записаться
+              </button>
+            </div>
+          </div>
+
+          <div class="price__panel" role="tabpanel" data-panel="electro" hidden>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена лампочки</span>
+              </div>
+              <span class="price__value">от 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена лампочки"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена датчика</span>
+              </div>
+              <span class="price__value">от 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена датчика"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Установка сигнализации</span>
+              </div>
+              <span class="price__value">от 10 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Установка сигнализации"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Заправка кондиционера</span
+                ><span class="price__note">подключение системы — 1 000 ₽</span>
+              </div>
+              <span class="price__value">450 ₽ / 100 г</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Заправка кондиционера"
+              >
+                Записаться
+              </button>
+            </div>
+          </div>
+
+          <div class="price__panel" role="tabpanel" data-panel="body" hidden>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Мойка</span>
+              </div>
+              <span class="price__value">от 500 ₽</span
+              ><button class="price__book" type="button" data-book="Мойка">
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Химчистка салона</span>
+              </div>
+              <span class="price__value">от 8 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Химчистка салона"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Кузовные работы</span
+                ><span class="price__note"
+                  >стоимость определяется по машине — оценим на месте
+                  бесплатно</span
+                >
+              </div>
+              <span class="price__value">по осмотру</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Кузовные работы"
+              >
+                Записаться
+              </button>
+            </div>
+          </div>
+
+          <div class="price__panel" role="tabpanel" data-panel="other" hidden>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Слесарные работы</span>
+              </div>
+              <span class="price__value">от 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Слесарные работы"
+              >
+                Записаться
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Гарантия -->
+    <section class="guarantee" id="guarantee">
+      <div class="guarantee__inner container">
+        <figure class="guarantee__photo" data-reveal>
+          <img src="img/master_2.png" alt="Вася за работой в цехе" />
+        </figure>
+        <div class="guarantee__content">
+          <span class="guarantee__label">Гарантия · Регион 36</span>
+          <h2 class="guarantee__title">Слово Васи</h2>
+          <p class="guarantee__text">
+            В нашем сервисе нет лишних работ и навязанных услуг. Вася строил
+            этот бизнес на честности и профессионализме. Если берёмся за работу
+            — делаем её правильно с первого раза.
+          </p>
+          <ul class="guarantee__badges">
+            <li class="guarantee__badge">Гарантия 1 год</li>
+            <li class="guarantee__badge">20+ лет опыта</li>
+            <li class="guarantee__badge">Смета до начала работ</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="reviews" id="reviews">
+      <div class="container">
+        <div class="reviews__head">
+          <h2 class="reviews__title">Отзывы клиентов</h2>
+          <a class="reviews__link" href="#" target="_blank" rel="noopener"
+            >Все отзывы на Яндекс Картах →</a
+          >
+        </div>
+
+        <div class="reviews__list">
+          <article class="review-card" data-reveal>
+            <div class="review-card__head">
+              <span class="review-card__avatar">ИБ</span>
+              <div>
+                <div class="review-card__author">Иван Богодухов</div>
+                <div class="review-card__meta">15 декабря 2025</div>
+              </div>
+            </div>
+            <div class="review-card__stars" aria-label="Оценка 4 из 5">
+              ★★★★<span class="review-card__star--dim">★</span>
+            </div>
+            <p class="review-card__text">
+              + быстрая работа, + свободные места всегда, + качественно
+              выполненные работы. Из минусов — нет комфортного места для
+              ожидания, пока ремонтируют автомобиль, сервис в подвальном
+              помещении.
+            </p>
+          </article>
+
+          <article class="review-card" data-reveal>
+            <div class="review-card__head">
+              <span class="review-card__avatar">АК</span>
+              <div>
+                <div class="review-card__author">Андрей К</div>
+                <div class="review-card__meta">10 декабря 2025</div>
+              </div>
+            </div>
+            <div class="review-card__stars" aria-label="Оценка 5 из 5">
+              ★★★★★
+            </div>
+            <p class="review-card__text">
+              Воспользовались экспресс-мойкой. Быстро, недорого, качественно,
+              чётко по времени. Есть место ожидания, где в тепле и комфорте
+              можно посидеть, кофе выпить.
+            </p>
+          </article>
+
+          <article class="review-card" data-reveal>
+            <div class="review-card__head">
+              <span class="review-card__avatar">E</span>
+              <div>
+                <div class="review-card__author">Elizabet.s85</div>
+                <div class="review-card__meta">25 декабря 2024</div>
+              </div>
+            </div>
+            <div class="review-card__stars" aria-label="Оценка 5 из 5">
+              ★★★★★
+            </div>
+            <p class="review-card__text">
+              Отличный автосервис. Очень приветливый персонал, быстро
+              отремонтировали автомобиль. Мойка тоже порадовала качеством и
+              скидкой! Свой магазин рядом, продавцы очень компетентные, всё
+              доступно подсказали…
+            </p>
+          </article>
+
+          <article class="review-card" data-reveal>
+            <div class="review-card__head">
+              <span class="review-card__avatar">НФ</span>
+              <div>
+                <div class="review-card__author">Надежда Ф</div>
+                <div class="review-card__meta">24 мая</div>
+              </div>
+            </div>
+            <div class="review-card__stars" aria-label="Оценка 5 из 5">
+              ★★★★★
+            </div>
+            <p class="review-card__text">
+              Огромное спасибо коллективу магазина! Обратились за покупкой
+              летней резины и были приятно удивлены: менеджеры не просто продали
+              товар, а подробно проконсультировали, учли наши пожелания и
+              помогли…
+            </p>
+          </article>
+
+          <article class="review-card" data-reveal>
+            <div class="review-card__head">
+              <span class="review-card__avatar">11</span>
+              <div>
+                <div class="review-card__author">11 1</div>
+                <div class="review-card__meta">24 июня</div>
+              </div>
+            </div>
+            <div class="review-card__stars" aria-label="Оценка 5 из 5">
+              ★★★★★
+            </div>
+            <p class="review-card__text">
+              Заезжал в автосервис на замену ремня вспомогательных агрегатов,
+              при его замене выявили, что в негодность пришли ролики — их тоже
+              заменили. В магазине быстро подобрали подходящий ремень и ролики…
+            </p>
+          </article>
+
+          <article class="review-card" data-reveal>
+            <div class="review-card__head">
+              <span class="review-card__avatar">ЮД</span>
+              <div>
+                <div class="review-card__author">Юлия Данковцева</div>
+                <div class="review-card__meta">27 сентября 2025</div>
+              </div>
+            </div>
+            <div class="review-card__stars" aria-label="Оценка 5 из 5">
+              ★★★★★
+            </div>
+            <p class="review-card__text">
+              Обслуживаю здесь автомобили, на одном пришло время заменить
+              моторное масло и в коробке заодно — были периодические пинки. Во
+              время осмотра мастер Александр обнаружил проблему и всё решил…
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Форма заявки -->
+    <section class="cta" id="request">
+      <div class="container">
+        <div class="cta__box">
+          <div class="cta__content">
+            <h2 class="cta__title">Запишись к Васе</h2>
+            <p class="cta__text">
+              Оставьте телефон — перезвоним в течение 15 минут, подскажем по
+              цене и запишем на удобное время. Воронеж, пр-т Революции, 1В.
+            </p>
+          </div>
+          <!-- Форма записи -->
+          <form class="cta__form" data-form novalidate>
+            <div class="cta__field">
+              <input
+                class="cta__input"
+                type="text"
+                name="name"
+                placeholder="Ваше имя"
+                data-validate="name"
+                autocomplete="name"
+              />
+              <span class="cta__error" hidden
+                >Введите имя — минимум 2 символа</span
+              >
+            </div>
+
+            <div class="cta__field">
+              <input
+                class="cta__input"
+                type="tel"
+                name="phone"
+                placeholder="+7 (___) ___-__-__"
+                data-validate="phone"
+                autocomplete="tel"
+              />
+              <span class="cta__error" hidden>Введите номер полностью</span>
+            </div>
+
+            <div class="cta__field">
+              <select
+                class="cta__input cta__select"
+                name="service"
+                data-validate="service"
+              >
+                <option value="" disabled selected>Выберите услугу</option>
+                <optgroup label="Диагностика">
+                  <option>Диагностика ходовой части</option>
+                  <option>Диагностика двигателя</option>
+                  <option>Компьютерная диагностика</option>
+                </optgroup>
+                <optgroup label="Колёса и диски">
+                  <option>Сход-развал</option>
+                  <option>Шиномонтаж</option>
+                  <option>Правка литых дисков</option>
+                  <option>Прокатка штампованных дисков</option>
+                </optgroup>
+                <optgroup label="ТО и жидкости">
+                  <option>Замена масла</option>
+                  <option>Замена антифриза аппаратом</option>
+                  <option>Частичная замена масла в коробке</option>
+                  <option>Замена тормозной жидкости</option>
+                </optgroup>
+                <optgroup label="Ходовая и рулевое">
+                  <option>Замена ступичного подшипника</option>
+                  <option>Замена рулевых наконечников</option>
+                  <option>Замена шаровой опоры</option>
+                  <option>Замена сайлентблоков рычага</option>
+                </optgroup>
+                <optgroup label="Двигатель и КПП">
+                  <option>Замена ГРМ с помпой</option>
+                  <option>Замена сцепления</option>
+                </optgroup>
+                <optgroup label="Тормоза">
+                  <option>Замена передних колодок</option>
+                  <option>Замена задних колодок</option>
+                </optgroup>
+                <optgroup label="Электрика и кондиционер">
+                  <option>Замена лампочки</option>
+                  <option>Замена датчика</option>
+                  <option>Установка сигнализации</option>
+                  <option>Заправка кондиционера</option>
+                </optgroup>
+                <optgroup label="Кузов и уход">
+                  <option>Мойка</option>
+                  <option>Химчистка салона</option>
+                  <option>Кузовные работы</option>
+                </optgroup>
+                <optgroup label="Прочее">
+                  <option>Слесарные работы</option>
+                </optgroup>
+              </select>
+              <span class="cta__error" hidden>Выберите услугу</span>
+            </div>
+
+            <div class="cta__field">
+              <div class="calendar" data-calendar>
+                <div class="calendar__head">
+                  <button
+                    class="calendar__nav"
+                    type="button"
+                    data-cal-prev
+                    aria-label="Предыдущий месяц"
+                  >
+                    ‹
+                  </button>
+                  <span class="calendar__month" data-cal-month></span>
+                  <button
+                    class="calendar__nav"
+                    type="button"
+                    data-cal-next
+                    aria-label="Следующий месяц"
+                  >
+                    ›
+                  </button>
+                </div>
+                <div class="calendar__weekdays">
+                  <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span
+                  ><span>Пт</span><span>Сб</span><span>Вс</span>
+                </div>
+                <div class="calendar__grid" data-cal-grid></div>
+                <span class="calendar__hint"
+                  >Обведены даты, на которые можно записаться</span
+                >
+              </div>
+              <input type="hidden" name="date" data-validate="date" />
+              <span class="cta__error" hidden
+                >Выберите свободную дату в календаре</span
+              >
+            </div>
+
+            <button class="button cta__button" type="submit">
+              Отправить заявку
+            </button>
+            <span class="cta__note"
+              >Нажимая кнопку, вы соглашаетесь с политикой обработки
+              персональных данных.</span
+            >
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contacts" id="contacts">
+      <div class="container">
+        <h2 class="contacts__title">Контакты</h2>
+
+        <div class="contacts__grid">
+          <div class="contacts__card" data-reveal>
+            <span class="contacts__label">Телефон</span>
+            <a class="contacts__phone" href="tel:+79507542736"
+              >+7 950 754 27 36</a
+            >
+            <span class="contacts__note"
+              >Звоните с 7:00 до 23:00, без выходных</span
+            >
+          </div>
+
+          <div class="contacts__card" data-reveal>
+            <span class="contacts__label">Адрес</span>
+            <span class="contacts__value">Воронеж, пр-т Революции, 1В</span>
+            <!-- В секции контактов -->
+            <a
+              class="contacts__map-link"
+              target="_blank"
+              href="https://yandex.ru/maps/193/voronezh/?ll=39.216154%2C51.681588&mode=routes&rtext=~51.681905%2C39.216250&rtt=auto&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1Nzg3NjEwNRJG0KDQvtGB0YHQuNGPLCDQktC-0YDQvtC90LXQtiwg0L_RgNC-0YHQv9C10LrRgiDQoNC10LLQvtC70Y7RhtC40LgsIDHQkiIKDXHdHEIVRbpOQg%2C%2C&z=19"
+              rel="noopener"
+            >
+              Построить маршрут в Навигаторе →
+            </a>
+          </div>
+
+          <div class="contacts__card" data-reveal>
+            <span class="contacts__label">Мы на связи</span>
+            <div class="contacts__socials">
+              <a
+                class="contacts__social contacts__social--tg"
+                href="https://t.me/USERNAME"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M22 2L11 13" />
+                  <path d="M22 2l-7 20-4-9-9-4z" />
+                </svg>
+                Telegram
+              </a>
+              <a
+                class="contacts__social contacts__social--wa"
+                href="https://wa.me/79001234567"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"
+                  />
+                  <path
+                    d="M9 8.5c.5 2.5 3 5 5.5 5.5l1-1.5 2 1c-.5 2-2 2.5-3.5 2-3.5-1-6.5-4-7.5-7.5-.5-1.5 0-3 2-3.5l1 2z"
+                  />
+                </svg>
+                WhatsApp
+              </a>
+            </div>
+            <span class="contacts__note"
+              >Отвечаем быстро — пишите в любой мессенджер</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__logo">
+          <img
+            class="footer__logo-img"
+            src="img/logo.png"
+            alt="Вася починит!"
+          />
+          <span class="footer__logo-name">Вася починит!</span>
+        </div>
+        <nav class="footer__nav">
+          <a class="footer__link" href="#services">Услуги</a>
+          <a class="footer__link" href="#guarantee">Гарантия</a>
+          <a class="footer__link" href="#request">Записаться</a>
+          <a class="footer__link" href="#">Политика конфиденциальности</a>
+          <!-- В футере -->
+          <a
+            class="footer__link"
+            target="_blank"
+            href="https://yandex.ru/maps/193/voronezh/?ll=39.216154%2C51.681588&mode=routes&rtext=~51.681905%2C39.216250&rtt=auto&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1Nzg3NjEwNRJG0KDQvtGB0YHQuNGPLCDQktC-0YDQvtC90LXQtiwg0L_RgNC-0YHQv9C10LrRgiDQoNC10LLQvtC70Y7RhtC40LgsIDHQkiIKDXHdHEIVRbpOQg%2C%2C&z=19"
+            rel="noopener"
+          >
+            Как добраться
+          </a>
+        </nav>
+        <p class="footer__copyright">
+          © 2026 «Вася починит!» · Воронеж, пр-т Революции, 1В · честно, как у
+          Васи
+        </p>
+      </div>
+    </footer>
+    <!-- Модалка успеха -->
+    <div
+      class="modal"
+      data-modal
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      hidden
+    >
+      <div class="modal__overlay" data-modal-close></div>
+      <div class="modal__box">
+        <button
+          class="modal__close"
+          type="button"
+          data-modal-close
+          aria-label="Закрыть"
+        >
+          ×
+        </button>
+        <h3 class="modal__title" id="modal-title">Заявка отправлена!</h3>
+        <p class="modal__text">
+          Спасибо! Вася получил вашу заявку и свяжется с вами в течение 15
+          минут, чтобы подтвердить запись.
+        </p>
+        <button class="button modal__button" type="button" data-modal-close>
+          Отлично
+        </button>
+      </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

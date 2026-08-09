@@ -1,0 +1,130 @@
+.contacts {
+  padding: 70px 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.contacts__title {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  font-size: clamp(26px, 4vw, 40px);
+  border-left: 4px solid var(--color-accent);
+  padding-left: 16px;
+  margin-bottom: 32px;
+}
+
+.contacts__grid {
+  display: grid;
+  gap: 18px;
+}
+
+.contacts__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+.contacts__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+}
+
+.contacts__label {
+  color: var(--color-accent);
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.contacts__phone {
+  font-family: var(--font-head);
+  font-size: clamp(22px, 3vw, 30px);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contacts__phone:hover {
+  color: var(--color-accent);
+}
+
+.contacts__value {
+  font-size: 16px;
+}
+
+.contacts__note {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.contacts__map-link {
+  color: var(--color-accent);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.contacts__map-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Соцсети в фирменных цветах ---------- */
+.contacts__socials {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.contacts__social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.contacts__social svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.contacts__social:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.contacts__social--tg {
+  color: #2aabee;
+  background: rgba(42, 171, 238, 0.12);
+  border: 1px solid rgba(42, 171, 238, 0.4);
+}
+
+.contacts__social--wa {
+  color: #25d366;
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid rgba(37, 211, 102, 0.4);
+}
+
+/* Планшет и десктоп: три карточки в ряд */
+@media (min-width: 768px) {
+  .contacts__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,24 @@
+/* ============================================
+   ТОЧКА ВХОДА ДЛЯ СТИЛЕЙ
+   Порядок @import = порядок каскада.
+   Сначала база, затем блоки сверху вниз по странице.
+   ============================================ */
+
+/* Шрифты (должны идти первой строкой) */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap");
+
+/* База: переменные, сброс, сетка, анимации */
+@import "base.css";
+
+/* Блоки по БЭМ */
+@import "blocks/button.css";
+@import "blocks/header.css";
+@import "blocks/hero.css";
+@import "blocks/price.css";
+@import "blocks/guarantee.css";
+@import "blocks/reviews.css";
+@import "blocks/cta.css";
+@import "blocks/contacts.css";
+@import "blocks/footer.css";
+@import "blocks/modal.css";
+@import "blocks/calendar.css";

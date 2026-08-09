@@ -1,0 +1,107 @@
+.cta {
+  padding: 70px 0;
+}
+
+.cta__box {
+  display: grid;
+  gap: 28px;
+  padding: 40px 28px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-left: 5px solid var(--color-accent);
+  border-radius: var(--radius);
+}
+
+.cta__title {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  font-size: clamp(24px, 4vw, 34px);
+  margin-bottom: 12px;
+}
+
+.cta__text {
+  color: var(--color-muted);
+}
+
+.cta__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cta__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cta__input {
+  padding: 14px 16px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 14px;
+  color-scheme: dark; /* нативный календарь и дропдаун — в тёмной теме */
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+.cta__input::placeholder {
+  color: var(--color-muted);
+}
+
+.cta__input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: var(--focus-ring);
+}
+
+/* ✅ Валидно: прозрачный фон + зелёная подсветка */
+.cta__input--valid {
+  background: transparent;
+  border-color: #6fd598;
+  box-shadow: 0 0 0 3px rgba(111, 213, 152, 0.18);
+}
+
+/* ❌ Ошибка: красная подсветка */
+.cta__input--error {
+  border-color: #ff5c5c;
+  box-shadow: 0 0 0 3px rgba(255, 92, 92, 0.15);
+}
+
+.cta__error {
+  color: #ff9d9d;
+  font-size: 12px;
+}
+
+/* Селект со своей стрелкой */
+.cta__select {
+  appearance: none;
+  padding-right: 40px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23ff9494' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+.cta__select option {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.cta__note {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+@media (min-width: 1024px) {
+  .cta__box {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 56px;
+  }
+}
