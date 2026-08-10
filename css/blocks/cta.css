@@ -43,7 +43,7 @@
   color: var(--color-text);
   font-family: inherit;
   font-size: 14px;
-  color-scheme: dark; /* нативный календарь и дропдаун — в тёмной теме */
+  color-scheme: dark;
   transition:
     border-color 0.2s,
     box-shadow 0.2s,
@@ -60,14 +60,12 @@
   box-shadow: var(--focus-ring);
 }
 
-/* ✅ Валидно: прозрачный фон + зелёная подсветка */
 .cta__input--valid {
   background: transparent;
   border-color: #6fd598;
   box-shadow: 0 0 0 3px rgba(111, 213, 152, 0.18);
 }
 
-/* ❌ Ошибка: красная подсветка */
 .cta__input--error {
   border-color: #ff5c5c;
   box-shadow: 0 0 0 3px rgba(255, 92, 92, 0.15);
@@ -78,7 +76,6 @@
   font-size: 12px;
 }
 
-/* Селект со своей стрелкой */
 .cta__select {
   appearance: none;
   padding-right: 40px;
@@ -98,10 +95,20 @@
   color: var(--color-muted);
 }
 
+/* ---------- Десктоп: текст слева НА УРОВНЕ первого поля ---------- */
 @media (min-width: 1024px) {
   .cta__box {
     grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 56px;
+    align-items: start; /* ← вот оно: контент прижат к верху */
+    gap: 40px;
+    padding: 48px 56px;
+  }
+
+  /* лёгкая оптическая подстройка, чтобы заголовок шёл вровень с полем */
+  .cta__title {
+    margin-top: 12px;
+  }
+  .cta__brand {
+    display: block;
   }
 }

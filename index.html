@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Вася починит! — автосервис в Воронеже | Регион 36</title>
+    <title>Шинторг Сервис — автосервис в Воронеже | пр-т Революции 1В</title>
     <meta
       name="description"
-      content="Автосервис «Вася починит!» в Воронеже: ТО, ремонт ходовой и двигателя, шиномонтаж, развал-схождение, автоэлектрик, химчистка. Гарантия 1 год."
+      content="«Шинторг Сервис» в Воронеже: шиномонтаж, развал-схождение, ремонт ходовой и двигателя, ТО, автоэлектрик, химчистка. Гарантия 1 год. Пр-т Революции, 1В."
     />
-    <link rel="icon" type="image/png" href="img/logo.png?v=2" />
+
+    <link rel="icon" type="image/png" href="img/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -71,11 +72,12 @@
       <div class="hero__inner container">
         <div class="hero__content">
           <h1 class="hero__title">
-            Сломался? <span class="hero__accent">Вася починит!</span>
+            Крутим шины — <span class="hero__accent">чиним машины!</span>
           </h1>
           <p class="hero__text">
-            Ремонт и обслуживание автомобилей в Воронеже. Честные цены, гарантия
-            1 год и мастер, который лично отвечает за результат.
+            «Шинторг Сервис» на пр-т Революции, 1В: шиномонтаж,
+            развал-схождение, ремонт ходовой и двигателя, ТО. Честные цены и
+            гарантия 1 год.
           </p>
           <button
             class="button hero__button"
@@ -88,7 +90,7 @@
         <figure class="hero__photo" data-reveal>
           <img
             src="img/master_1.png"
-            alt="Мастер автосервиса «Вася починит!»"
+            alt="Мастер автосервиса «Шинторг Сервис»"
           />
         </figure>
       </div>
@@ -97,7 +99,7 @@
     <!-- Прайс с категориями -->
     <section class="price" id="services">
       <div class="container">
-        <h2 class="price__title">Что Вася чинит</h2>
+        <h2 class="price__title">Что мы чиним</h2>
 
         <div class="price__tabs" role="tablist" aria-label="Категории услуг">
           <button
@@ -252,6 +254,15 @@
             </div>
             <div class="price__row">
               <div class="price__info">
+                <span class="price__name">Латка</span>
+              </div>
+              <span class="price__value">от 1 200 ₽</span
+              ><button class="price__book" type="button" data-book="Латка">
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
                 <span class="price__name">Правка литых дисков</span>
               </div>
               <span class="price__value">от 2 000 ₽</span
@@ -298,6 +309,76 @@
             </div>
             <div class="price__row">
               <div class="price__info">
+                <span class="price__name">Замена воздушного фильтра</span>
+              </div>
+              <span class="price__value">600 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена воздушного фильтра"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена салонного фильтра</span
+                ><span class="price__note">для Ford — 1 000 ₽</span>
+              </div>
+              <span class="price__value">600 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена салонного фильтра"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name"
+                  >Замена топливного фильтра (бензин)</span
+                ><span class="price__note">вне бака</span>
+              </div>
+              <span class="price__value">1 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена топливного фильтра (бензин)"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name"
+                  >Замена топливного фильтра (дизель)</span
+                >
+              </div>
+              <span class="price__value">1 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена топливного фильтра (дизель)"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Чистка дроссельной заслонки</span>
+              </div>
+              <span class="price__value">от 1 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Чистка дроссельной заслонки"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
                 <span class="price__name">Замена антифриза аппаратом</span>
               </div>
               <span class="price__value">2 500 ₽</span
@@ -311,28 +392,39 @@
             </div>
             <div class="price__row">
               <div class="price__info">
-                <span class="price__name"
-                  >Частичная замена масла в коробке</span
-                >
+                <span class="price__name">Замена тормозной жидкости</span>
               </div>
-              <span class="price__value">от 2 500 ₽</span
+              <span class="price__value">2 500 ₽</span
               ><button
                 class="price__book"
                 type="button"
-                data-book="Частичная замена масла в коробке"
+                data-book="Замена тормозной жидкости"
               >
                 Записаться
               </button>
             </div>
             <div class="price__row">
               <div class="price__info">
-                <span class="price__name">Замена тормозной жидкости</span>
+                <span class="price__name">Замена масла в МКПП</span>
               </div>
-              <span class="price__value">от 2 000 ₽</span
+              <span class="price__value">1 500 ₽</span
               ><button
                 class="price__book"
                 type="button"
-                data-book="Замена тормозной жидкости"
+                data-book="Замена масла в МКПП"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена масла в АКПП (частичная)</span>
+              </div>
+              <span class="price__value">2 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена масла в АКПП (частичная)"
               >
                 Записаться
               </button>
@@ -392,6 +484,32 @@
                 Записаться
               </button>
             </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена гранаты (ШРУС)</span>
+              </div>
+              <span class="price__value">от 2 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена гранаты (ШРУС)"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена рулевой рейки</span>
+              </div>
+              <span class="price__value">от 5 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена рулевой рейки"
+              >
+                Записаться
+              </button>
+            </div>
           </div>
 
           <div class="price__panel" role="tabpanel" data-panel="engine" hidden>
@@ -410,6 +528,32 @@
             </div>
             <div class="price__row">
               <div class="price__info">
+                <span class="price__name">Замена приводных ремней</span>
+              </div>
+              <span class="price__value">от 1 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена приводных ремней"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена подушки двигателя</span>
+              </div>
+              <span class="price__value">от 1 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена подушки двигателя"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
                 <span class="price__name">Замена сцепления</span>
               </div>
               <span class="price__value">от 8 000 ₽</span
@@ -417,6 +561,32 @@
                 class="price__book"
                 type="button"
                 data-book="Замена сцепления"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена МКПП</span>
+              </div>
+              <span class="price__value">от 5 500 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена МКПП"
+              >
+                Записаться
+              </button>
+            </div>
+            <div class="price__row">
+              <div class="price__info">
+                <span class="price__name">Замена АКПП</span>
+              </div>
+              <span class="price__value">от 12 000 ₽</span
+              ><button
+                class="price__book"
+                type="button"
+                data-book="Замена АКПП"
               >
                 Записаться
               </button>
@@ -573,15 +743,18 @@
     <section class="guarantee" id="guarantee">
       <div class="guarantee__inner container">
         <figure class="guarantee__photo" data-reveal>
-          <img src="img/master_2.png" alt="Вася за работой в цехе" />
+          <img
+            src="img/master_2.png"
+            alt="Мастер автосервиса «Шинторг Сервис»"
+          />
         </figure>
         <div class="guarantee__content">
           <span class="guarantee__label">Гарантия · Регион 36</span>
-          <h2 class="guarantee__title">Слово Васи</h2>
+          <h2 class="guarantee__title">Слово мастера</h2>
           <p class="guarantee__text">
-            В нашем сервисе нет лишних работ и навязанных услуг. Вася строил
-            этот бизнес на честности и профессионализме. Если берёмся за работу
-            — делаем её правильно с первого раза.
+            В нашем сервисе нет лишних работ и навязанных услуг. «Шинторг
+            Сервис» строился на честности и профессионализме. Если берёмся за
+            работу — делаем её правильно с первого раза.
           </p>
           <ul class="guarantee__badges">
             <li class="guarantee__badge">Гарантия 1 год</li>
@@ -723,7 +896,9 @@
       <div class="container">
         <div class="cta__box">
           <div class="cta__content">
-            <h2 class="cta__title">Запишись к Васе</h2>
+            <h2 class="cta__title">
+              Запишитесь в <span class="cta__brand">«Шинторг Сервис»</span>
+            </h2>
             <p class="cta__text">
               Оставьте телефон — перезвоним в течение 15 минут, подскажем по
               цене и запишем на удобное время. Воронеж, пр-т Революции, 1В.
@@ -772,24 +947,37 @@
                 <optgroup label="Колёса и диски">
                   <option>Сход-развал</option>
                   <option>Шиномонтаж</option>
+                  <option>Латка</option>
                   <option>Правка литых дисков</option>
                   <option>Прокатка штампованных дисков</option>
                 </optgroup>
                 <optgroup label="ТО и жидкости">
                   <option>Замена масла</option>
+                  <option>Замена воздушного фильтра</option>
+                  <option>Замена салонного фильтра</option>
+                  <option>Замена топливного фильтра (бензин)</option>
+                  <option>Замена топливного фильтра (дизель)</option>
+                  <option>Чистка дроссельной заслонки</option>
                   <option>Замена антифриза аппаратом</option>
-                  <option>Частичная замена масла в коробке</option>
                   <option>Замена тормозной жидкости</option>
+                  <option>Замена масла в МКПП</option>
+                  <option>Замена масла в АКПП (частичная)</option>
                 </optgroup>
                 <optgroup label="Ходовая и рулевое">
                   <option>Замена ступичного подшипника</option>
                   <option>Замена рулевых наконечников</option>
                   <option>Замена шаровой опоры</option>
                   <option>Замена сайлентблоков рычага</option>
+                  <option>Замена гранаты (ШРУС)</option>
+                  <option>Замена рулевой рейки</option>
                 </optgroup>
                 <optgroup label="Двигатель и КПП">
                   <option>Замена ГРМ с помпой</option>
+                  <option>Замена приводных ремней</option>
+                  <option>Замена подушки двигателя</option>
                   <option>Замена сцепления</option>
+                  <option>Замена МКПП</option>
+                  <option>Замена АКПП</option>
                 </optgroup>
                 <optgroup label="Тормоза">
                   <option>Замена передних колодок</option>
@@ -869,8 +1057,8 @@
         <div class="contacts__grid">
           <div class="contacts__card" data-reveal>
             <span class="contacts__label">Телефон</span>
-            <a class="contacts__phone" href="tel:+79507542736"
-              >+7 950 754 27 36</a
+            <a class="contacts__phone" href="tel:+79529554747"
+              >+7 952 955 47 47</a
             >
             <span class="contacts__note"
               >Звоните с 7:00 до 23:00, без выходных</span
@@ -938,9 +1126,9 @@
           <img
             class="footer__logo-img"
             src="img/logo.png"
-            alt="Вася починит!"
+            alt="Шинторг Сервис"
           />
-          <span class="footer__logo-name">Вася починит!</span>
+          <span class="footer__logo-name">«Шинторг Сервис»</span>
         </div>
         <nav class="footer__nav">
           <a class="footer__link" href="#services">Услуги</a>
@@ -958,8 +1146,8 @@
           </a>
         </nav>
         <p class="footer__copyright">
-          © 2026 «Вася починит!» · Воронеж, пр-т Революции, 1В · честно, как у
-          Васи
+          © 2026 «Шинторг Сервис» · Воронеж, пр-т Революции, 1В · крутим шины,
+          чиним машины
         </p>
       </div>
     </footer>
@@ -984,8 +1172,8 @@
         </button>
         <h3 class="modal__title" id="modal-title">Заявка отправлена!</h3>
         <p class="modal__text">
-          Спасибо! Вася получил вашу заявку и свяжется с вами в течение 15
-          минут, чтобы подтвердить запись.
+          Спасибо! Мастер свяжется с вами в течение 15 минут, чтобы подтвердить
+          запись.
         </p>
         <button class="button modal__button" type="button" data-modal-close>
           Отлично

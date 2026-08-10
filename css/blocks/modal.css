@@ -23,10 +23,15 @@ body.modal-open {
   animation: modal-fade 0.25s ease;
 }
 
+/* Ключевое: flex-колонка + gap — элементы НИКОГДА не наедут друг на друга */
 .modal__box {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
   width: 100%;
-  max-width: 440px;
+  max-width: 460px;
   padding: 40px 32px;
   background: var(--color-surface);
   border: 1px solid var(--color-accent);
@@ -54,13 +59,15 @@ body.modal-open {
   font-family: var(--font-head);
   text-transform: uppercase;
   font-size: 24px;
-  margin-bottom: 12px;
 }
 
 .modal__text {
   color: var(--color-muted);
   font-size: 14px;
-  margin-bottom: 24px;
+}
+
+.modal__button {
+  margin-top: 8px;
 }
 
 @keyframes modal-fade {
