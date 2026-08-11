@@ -116,10 +116,11 @@
   border: 1px solid rgba(42, 171, 238, 0.4);
 }
 
-.contacts__social--wa {
-  color: #25d366;
-  background: rgba(37, 211, 102, 0.12);
-  border: 1px solid rgba(37, 211, 102, 0.4);
+/* MAX — фирменный сине-фиолетовый */
+.contacts__social--max {
+  color: #7b8cff;
+  background: rgba(123, 140, 255, 0.12);
+  border: 1px solid rgba(123, 140, 255, 0.4);
 }
 
 /* Планшет и десктоп: три карточки в ряд */
