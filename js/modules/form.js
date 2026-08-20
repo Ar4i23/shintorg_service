@@ -42,6 +42,7 @@ export function initForm() {
       Телефон: form.phone.value.trim(),
       Услуга: form.service.value,
       Дата: new Date(form.date.value).toLocaleDateString("ru-RU"),
+      Время: form.time.value,
     };
 
     await sendToTelegram(data);

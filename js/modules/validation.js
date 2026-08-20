@@ -31,3 +31,18 @@ export function validateField(field) {
 
   return isValid;
 }
+const validators = {
+  name: (value) => value.trim().length >= 2,
+  phone: (value) => {
+    const digits = value.replace(/\D/g, "");
+    return digits.length >= 10 && digits.length <= 11;
+  },
+  service: (value) => value !== "",
+  date: (value) => {
+    if (!value) return false;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return new Date(value) >= today;
+  },
+  time: (value) => value !== "",
+};

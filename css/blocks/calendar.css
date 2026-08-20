@@ -110,3 +110,61 @@
   color: var(--color-muted);
   font-size: 12px;
 }
+/* ---------- Слоты времени ---------- */
+.calendar__slots {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-line);
+  animation: price-in 0.3s ease;
+}
+
+.calendar__slots[hidden] {
+  display: none;
+}
+
+.calendar__slots-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.calendar__slots-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.calendar__slot {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--color-accent);
+  background: transparent;
+  color: var(--color-accent);
+  font-family: var(--font-head);
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.calendar__slot:hover {
+  background: var(--color-accent);
+  color: var(--color-btn-text);
+  transform: translateY(-2px);
+}
+
+.calendar__slot--selected {
+  background: var(--color-accent);
+  color: var(--color-btn-text);
+}
+
+.calendar__slots-empty {
+  color: var(--color-muted);
+  font-size: 13px;
+}
