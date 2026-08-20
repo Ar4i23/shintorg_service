@@ -3,8 +3,8 @@
 // 2. Узнай chat_id у @userinfobot
 // 3. Вставь оба значения ниже — и заявки полетят в Telegram
 const TG_CONFIG = {
-  botToken: "ВСТАВЬ_ТОКЕН",
-  chatId: "ВСТАВЬ_CHAT_ID",
+  botToken: "8835545928:AAF0bDgZCw-mPWrPUt6SVtB7eTkloktujX8",
+  chatId: "8605142108",
 };
 
 export async function sendToTelegram(data) {
