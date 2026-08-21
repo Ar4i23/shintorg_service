@@ -1,15 +1,18 @@
+/* ========== Календарь записи ========== */
 .calendar {
+  padding: 18px;
+  border-radius: 12px;
   border: 1px solid var(--color-line);
-  border-radius: 10px;
-  padding: 14px;
   background: var(--color-bg);
 }
 
+/* ---------- Шапка календаря ---------- */
 .calendar__head {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
 .calendar__month {
@@ -20,40 +23,45 @@
 }
 
 .calendar__nav {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 8px;
   border: 1px solid var(--color-line);
   background: transparent;
   color: var(--color-accent);
-  font-size: 16px;
   cursor: pointer;
   transition:
     background 0.2s,
-    color 0.2s;
+    border-color 0.2s;
 }
 
 .calendar__nav:hover:not(:disabled) {
-  background: var(--color-accent);
-  color: var(--color-btn-text);
+  border-color: var(--color-accent);
+  background: rgba(255, 148, 148, 0.1);
 }
 
 .calendar__nav:disabled {
-  opacity: 0.3;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
+/* ---------- Дни недели ---------- */
 .calendar__weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
-  margin-bottom: 6px;
-  color: var(--color-muted);
-  font-size: 11px;
-  text-transform: uppercase;
-  text-align: center;
+  margin-bottom: 8px;
 }
 
+.calendar__weekdays span {
+  text-align: center;
+  font-family: var(--font-head);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--color-muted);
+}
+
+/* ---------- Сетка дней ---------- */
 .calendar__grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -61,65 +69,76 @@
 }
 
 .calendar__day {
-  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--color-text);
-  font-size: 13px;
-  cursor: pointer;
+  color: var(--color-muted);
+  font-family: var(--font-head);
+  font-size: 14px;
+  cursor: default;
   transition:
     background 0.2s,
-    color 0.2s;
+    color 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
 }
 
-/* Свободная дата — обведена акцентом */
+/* Сегодня */
+.calendar__day--today {
+  border-color: var(--color-line);
+  color: var(--color-text);
+}
+
+/* Есть свободные слоты — кликабельна */
 .calendar__day--free {
-  border-color: var(--color-accent);
   color: var(--color-accent);
+  border-color: var(--color-accent);
+  cursor: pointer;
 }
 
 .calendar__day--free:hover {
   background: var(--color-accent);
   color: var(--color-btn-text);
+  transform: translateY(-2px);
 }
 
-/* Выбранная */
+/* Выбранный день */
 .calendar__day--selected {
   background: var(--color-accent);
   color: var(--color-btn-text);
 }
 
-/* Занятая / прошедшая */
+/* Прошедшие / без слотов */
 .calendar__day--disabled {
-  color: var(--color-line);
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
-/* Сегодня */
-.calendar__day--today {
-  box-shadow: inset 0 0 0 1px var(--color-muted);
-}
-
-.calendar__hint {
-  display: block;
-  margin-top: 10px;
-  color: var(--color-muted);
-  font-size: 12px;
-}
-/* ---------- Слоты времени ---------- */
+/* ========== Слоты времени ========== */
 .calendar__slots {
   margin-top: 14px;
   padding-top: 14px;
   border-top: 1px solid var(--color-line);
-  animation: price-in 0.3s ease;
+  animation: cal-fade 0.3s ease;
 }
 
 .calendar__slots[hidden] {
   display: none;
+}
+
+@keyframes cal-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .calendar__slots-label {
@@ -138,19 +157,24 @@
   gap: 8px;
 }
 
+/* ---------- Кнопка-слот: время + остаток мест ---------- */
 .calendar__slot {
-  padding: 8px 16px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 14px;
   border-radius: 8px;
   border: 1px solid var(--color-accent);
   background: transparent;
   color: var(--color-accent);
   font-family: var(--font-head);
-  font-size: 14px;
   cursor: pointer;
   transition:
     background 0.2s,
     color 0.2s,
-    transform 0.2s;
+    transform 0.2s,
+    border-color 0.2s;
 }
 
 .calendar__slot:hover {
@@ -164,7 +188,66 @@
   color: var(--color-btn-text);
 }
 
+.calendar__slot-time {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.calendar__slot-left {
+  font-family: var(--font-body);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  opacity: 0.8;
+}
+
+.calendar__slot--selected .calendar__slot-left {
+  color: var(--color-btn-text);
+  opacity: 0.8;
+}
+
+/* Мало мест (≤3) — янтарная подсветка */
+.calendar__slot--few .calendar__slot-left {
+  color: #ffb45e;
+  opacity: 1;
+  font-weight: 600;
+}
+
+.calendar__slot--few:hover .calendar__slot-left,
+.calendar__slot--few.calendar__slot--selected .calendar__slot-left {
+  color: inherit;
+}
+
+/* Услуга «раз в час» уже занята на это время */
+.calendar__slot--busy {
+  opacity: 0.4;
+  border-color: var(--color-line);
+  color: var(--color-muted);
+  cursor: not-allowed;
+  text-decoration: line-through;
+  transform: none;
+}
+
+.calendar__slot--busy:hover {
+  background: transparent;
+  color: var(--color-muted);
+  transform: none;
+}
+
+.calendar__slot--busy .calendar__slot-left {
+  color: var(--color-muted);
+}
+
+/* ---------- Пусто и подсказка ---------- */
 .calendar__slots-empty {
   color: var(--color-muted);
   font-size: 13px;
+}
+
+.calendar__hint {
+  display: block;
+  margin-top: 12px;
+  color: var(--color-muted);
+  font-size: 12px;
 }

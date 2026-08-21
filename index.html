@@ -966,7 +966,8 @@
                 autocomplete="name"
               />
               <span class="cta__error" hidden
-                >Введите имя — минимум 2 символа</span
+                >Имя: минимум 2 буквы, русские или латинские, без пробелов, цифр
+                и символов</span
               >
             </div>
 
@@ -979,7 +980,10 @@
                 data-validate="phone"
                 autocomplete="tel"
               />
-              <span class="cta__error" hidden>Введите номер полностью</span>
+              <span class="cta__error" hidden
+                >Проверьте номер: +7 (900) 123-45-67 (мобильный) или +7 (473)
+                123-45-67 (городской)</span
+              >
             </div>
 
             <div class="cta__field">
@@ -1052,8 +1056,7 @@
               </select>
               <span class="cta__error" hidden>Выберите услугу</span>
             </div>
-
-            <div class="cta__field">
+            <div class="cta__field cta__field--calendar">
               <div class="calendar" data-calendar>
                 <div class="calendar__head">
                   <button
@@ -1075,18 +1078,27 @@
                   </button>
                 </div>
                 <div class="calendar__weekdays">
-                  <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span
-                  ><span>Пт</span><span>Сб</span><span>Вс</span>
+                  <span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span
+                  ><span>ПТ</span><span>СБ</span><span>ВС</span>
                 </div>
                 <div class="calendar__grid" data-cal-grid></div>
+
+                <div class="calendar__slots" data-cal-slots hidden>
+                  <span class="calendar__slots-label">Выберите время:</span>
+                  <div class="calendar__slots-list" data-cal-slots-list></div>
+                </div>
+
                 <span class="calendar__hint"
                   >Выберите дату и время для записи</span
                 >
               </div>
+            </div>
+
+            <div class="cta__field">
               <input type="hidden" name="date" data-validate="date" />
               <input type="hidden" name="time" data-validate="time" />
               <span class="cta__error" hidden
-                >Выберите свободную дату в календаре</span
+                >Выберите дату и время для записи</span
               >
             </div>
 

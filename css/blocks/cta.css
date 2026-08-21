@@ -1,28 +1,38 @@
+/* ========== Секция записи ========== */
 .cta {
   padding: 70px 0;
 }
 
 .cta__box {
-  display: grid;
-  gap: 28px;
+  position: relative;
   padding: 40px 28px;
+  border-radius: var(--radius);
   background: var(--color-surface);
   border: 1px solid var(--color-line);
-  border-left: 5px solid var(--color-accent);
-  border-radius: var(--radius);
+  border-left: 4px solid var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .cta__title {
   font-family: var(--font-head);
   text-transform: uppercase;
-  font-size: clamp(24px, 4vw, 34px);
-  margin-bottom: 12px;
+  font-size: clamp(24px, 3.4vw, 36px);
+  margin-bottom: 14px;
+}
+
+.cta__brand {
+  color: var(--color-accent);
 }
 
 .cta__text {
   color: var(--color-muted);
+  font-size: 15px;
+  max-width: 460px;
 }
 
+/* ========== Форма ========== */
 .cta__form {
   display: flex;
   flex-direction: column;
@@ -32,22 +42,20 @@
 .cta__field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
 }
 
 .cta__input {
+  width: 100%;
   padding: 14px 16px;
-  background: var(--color-bg);
-  border: 1px solid var(--color-line);
   border-radius: 10px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
   color: var(--color-text);
-  font-family: inherit;
-  font-size: 14px;
-  color-scheme: dark;
+  font-family: var(--font-body);
+  font-size: 15px;
   transition:
     border-color 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
+    box-shadow 0.2s;
 }
 
 .cta__input::placeholder {
@@ -57,58 +65,96 @@
 .cta__input:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: var(--focus-ring);
+  box-shadow: 0 0 0 3px rgba(255, 148, 148, 0.15);
 }
 
-.cta__input--valid {
-  background: transparent;
-  border-color: #6fd598;
-  box-shadow: 0 0 0 3px rgba(111, 213, 152, 0.18);
+/* ---------- Состояния валидации ---------- */
+/* Валидно — сразу зелёная рамка */
+.cta__input.cta__input--valid {
+  border-color: #6fbf73;
 }
 
-.cta__input--error {
-  border-color: #ff5c5c;
-  box-shadow: 0 0 0 3px rgba(255, 92, 92, 0.15);
+/* Ошибка — красная рамка */
+.cta__input.cta__input--error {
+  border-color: #ff6b6b;
 }
 
-.cta__error {
-  color: #ff9d9d;
-  font-size: 12px;
-}
-
+/* ---------- Селект услуг ---------- */
 .cta__select {
   appearance: none;
-  padding-right: 40px;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23ff9494' stroke-width='2'/%3E%3C/svg%3E");
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff9494' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 16px center;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 42px;
+  cursor: pointer;
 }
 
-.cta__select option {
+.cta__select option,
+.cta__select optgroup {
   background: var(--color-surface);
   color: var(--color-text);
 }
 
-.cta__note {
+/* ---------- Ошибки под полями ---------- */
+.cta__error {
+  display: block;
+  margin-top: 6px;
+  color: #ff8a8a;
   font-size: 12px;
-  color: var(--color-muted);
 }
 
-/* ---------- Десктоп: текст слева НА УРОВНЕ первого поля ---------- */
-@media (min-width: 1024px) {
+/* Без этого правила ошибка видна всегда, даже с hidden */
+.cta__error[hidden] {
+  display: none;
+}
+
+/* ---------- Кнопка и примечание ---------- */
+.cta__button {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.cta__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.cta__note {
+  color: var(--color-muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+/* ========== Десктоп: текст слева, форма справа ========== */
+@media (min-width: 900px) {
   .cta__box {
-    grid-template-columns: 1fr 1fr;
-    align-items: start; /* ← вот оно: контент прижат к верху */
-    gap: 40px;
-    padding: 48px 56px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+    padding: 48px;
   }
 
-  /* лёгкая оптическая подстройка, чтобы заголовок шёл вровень с полем */
-  .cta__title {
-    margin-top: 12px;
+  .cta__content {
+    flex: 1;
+    position: sticky;
+    top: 100px;
   }
-  .cta__brand {
-    display: block;
+
+  .cta__form {
+    flex: 1;
   }
+}
+/* ---------- Автозаполнение Chrome ---------- */
+/* Тёмный фон и светлый текст вместо белой заливки */
+.cta__input:-webkit-autofill,
+.cta__input:-webkit-autofill:hover,
+.cta__input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-surface) inset;
+  -webkit-text-fill-color: var(--color-text);
+  caret-color: var(--color-text);
+  transition: background-color 5000s ease-in-out 0s;
 }

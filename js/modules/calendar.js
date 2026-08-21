@@ -1,16 +1,8 @@
-// ============================================================
-// КАЛЕНДАРЬ ЗАПИСИ С ВЫБОРОМ ВРЕМЕНИ
-// Google-таблица: колонки — дата, время, статус
-// Файл → Поделиться → Опубликовать → CSV → ссылка сюда:
-// ============================================================
-const SHEET_CSV_URL = "ВСТАВЬ_ССЫЛКУ_НА_CSV";
-
-// 'whitelist'  — кликабельны ТОЛЬКО слоты «свободно»
-// 'blacklist'  — открыты все, КРОМЕ «занято»
-const MODE = "whitelist";
+// Мини-бэкенд в Google-таблице (Apps Script)
+export const API_URL =
+  "https://script.google.com/macros/s/AKfycbweXF_PQvTEFp75z3j34uHfoM0yY1D6jsvX7v9yhk38MdDbgqDeFKozb3CC7hUSRzM2Jg/exec";
 
 const MONTHS_AHEAD = 3;
-
 const MONTHS = [
   "Январь",
   "Февраль",
@@ -26,12 +18,52 @@ const MONTHS = [
   "Декабрь",
 ];
 
-// Map: "21.08.2026" → [ { time: "09:00", status: "свободно" }, ... ]
-let schedule = new Map();
-let sheetLoaded = false;
+let schedule = new Map(); // "21.08.2026" -> [{ time, left, busyOnce }]
+let loaded = false;
 let view = new Date();
 let selectedDate = "";
 let selectedTime = "";
+
+// Конфликт услуги «раз в час» с выбором в форме:
+// null   — конфликта нет
+// 'time' — выбранное время занято этой услугой
+// 'date' — на выбранной дате нет ни одного часа для этой услуги
+export function getServiceConflict(serviceValue) {
+  const form = document.querySelector("[data-form]");
+  if (!form || !serviceValue) return null;
+  const date = form.querySelector('[name="date"]')?.value || "";
+  if (!date) return null;
+
+  const svc = serviceValue.toLowerCase();
+  const slots = freeSlots(keyFromISO(date));
+  const time = form.querySelector('[name="time"]')?.value || "";
+
+  if (time) {
+    const slot = slots.find((s) => s.time === time);
+    return slot && slot.busyOnce.includes(svc) ? "time" : null;
+  }
+  return slots.some((s) => !s.busyOnce.includes(svc)) ? null : "date";
+}
+
+// Отдать текущую выбранную дату (ISO) наружу
+export function getSelectedDateISO() {
+  return selectedDate;
+}
+
+// Обновить счётчики мест с сервера:
+// 'keep-date' — дату оставить, время сбросить (минус виден сразу)
+// 'all'       — сбросить всё
+export async function refreshSchedule(mode = "keep-date") {
+  if (mode === "all") {
+    selectedDate = "";
+    selectedTime = "";
+  }
+  if (mode === "keep-date") {
+    selectedTime = "";
+  }
+  const root = document.querySelector("[data-calendar]");
+  if (root) await load(root);
+}
 
 export function initCalendar() {
   const root = document.querySelector("[data-calendar]");
@@ -41,44 +73,43 @@ export function initCalendar() {
     view.setMonth(view.getMonth() - 1);
     render(root);
   });
-
   root.querySelector("[data-cal-next]").addEventListener("click", () => {
     view.setMonth(view.getMonth() + 1);
     render(root);
   });
 
+  const serviceSelect = document.querySelector('[data-form] [name="service"]');
+  if (serviceSelect)
+    serviceSelect.addEventListener("change", () => renderSlots(root));
+
   load(root);
 }
 
 async function load(root) {
-  if (SHEET_CSV_URL.startsWith("http")) {
+  if (API_URL.startsWith("http")) {
     try {
-      const response = await fetch(SHEET_CSV_URL);
-      parseCsv(await response.text());
-      sheetLoaded = true;
-    } catch (error) {
-      console.warn("Календарь: расписание не загрузилось", error);
-      sheetLoaded = false;
+      // nocache — чтобы не получить старый ответ из кэша
+      const res = await fetch(
+        API_URL + (API_URL.includes("?") ? "&" : "?") + "nocache=" + Date.now(),
+      );
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const data = await res.json();
+      schedule = new Map();
+      (data.slots || []).forEach((s) => {
+        if (!schedule.has(s.date)) schedule.set(s.date, []);
+        schedule
+          .get(s.date)
+          .push({ time: s.time, left: s.left, busyOnce: s.busyOnce || [] });
+      });
+      loaded = true;
+      const form = document.querySelector("[data-form]");
+      if (form) form.dataset.slots = "on";
+    } catch (e) {
+      console.warn("Календарь: расписание недоступно — открыты все даты", e);
+      loaded = false;
     }
   }
   render(root);
-}
-
-function parseCsv(text) {
-  schedule = new Map();
-  text
-    .trim()
-    .split(/\r?\n/)
-    .forEach((line, index) => {
-      if (index === 0 && /дата/i.test(line)) return;
-      const parts = line.split(",").map((p) => (p || "").trim());
-      const [rawDate, rawTime, rawStatus] = parts;
-      if (!rawDate || !rawTime) return;
-
-      const status = (rawStatus || "").toLowerCase();
-      if (!schedule.has(rawDate)) schedule.set(rawDate, []);
-      schedule.get(rawDate).push({ time: rawTime, status });
-    });
 }
 
 const pad = (n) => String(n).padStart(2, "0");
@@ -86,28 +117,19 @@ const toKey = (d) =>
   `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
 const toISO = (d) =>
   `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const keyFromISO = (iso) => {
+  const p = (iso || "").split("-");
+  return p.length === 3 ? `${p[2]}.${p[1]}.${p[0]}` : "";
+};
 
-function getFreeSlots(dateKey) {
-  const slots = schedule.get(dateKey);
-  if (!slots) return [];
-  return slots.filter((s) => {
-    if (MODE === "whitelist")
-      return s.status === "свободно" || s.status === "free";
-    return s.status !== "занято" && s.status !== "busy";
-  });
-}
-
-function hasAnyFreeSlot(dateKey) {
-  if (!sheetLoaded) return true;
-  return getFreeSlots(dateKey).length > 0;
-}
+const freeSlots = (key) => (schedule.get(key) || []).filter((s) => s.left > 0);
 
 function isDateAvailable(date) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   if (date < today) return false;
-  if (!sheetLoaded) return true;
-  return hasAnyFreeSlot(toKey(date));
+  if (!loaded) return true;
+  return freeSlots(toKey(date)).length > 0;
 }
 
 function render(root) {
@@ -116,119 +138,127 @@ function render(root) {
   const prevBtn = root.querySelector("[data-cal-prev]");
   const nextBtn = root.querySelector("[data-cal-next]");
 
-  const year = view.getFullYear();
-  const month = view.getMonth();
+  const year = view.getFullYear(),
+    month = view.getMonth();
   const now = new Date();
-  const monthDiff = (year - now.getFullYear()) * 12 + (month - now.getMonth());
+  const diff = (year - now.getFullYear()) * 12 + (month - now.getMonth());
 
   label.textContent = `${MONTHS[month]} ${year}`;
-  prevBtn.disabled = monthDiff <= 0;
-  nextBtn.disabled = monthDiff >= MONTHS_AHEAD;
-
+  prevBtn.disabled = diff <= 0;
+  nextBtn.disabled = diff >= MONTHS_AHEAD;
   grid.innerHTML = "";
 
   const offset = (new Date(year, month, 1).getDay() + 6) % 7;
   for (let i = 0; i < offset; i++) grid.append(document.createElement("span"));
 
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  for (let day = 1; day <= daysInMonth; day++) {
+  const days = new Date(year, month + 1, 0).getDate();
+  for (let day = 1; day <= days; day++) {
     const date = new Date(year, month, day);
-    const iso = toISO(date);
-    const key = toKey(date);
-
+    const iso = toISO(date),
+      key = toKey(date);
     const cell = document.createElement("button");
     cell.type = "button";
     cell.className = "calendar__day";
     cell.textContent = day;
-
     if (key === toKey(now)) cell.classList.add("calendar__day--today");
 
     if (isDateAvailable(date)) {
       cell.classList.add("calendar__day--free");
       if (iso === selectedDate) cell.classList.add("calendar__day--selected");
-      cell.addEventListener("click", () => selectDate(root, iso, key));
+      cell.addEventListener("click", () => selectDate(root, iso));
     } else {
       cell.classList.add("calendar__day--disabled");
       cell.disabled = true;
     }
-
     grid.append(cell);
   }
 
-  // Если выбранная дата ещё актуальна — показать слоты
-  if (selectedDate) {
-    const parts = selectedDate.split("-");
-    const key = `${parts[2]}.${parts[1]}.${parts[0]}`;
-    renderSlots(root, key);
+  if (selectedDate) renderSlots(root);
+  else {
+    const box = root.querySelector("[data-cal-slots]");
+    if (box) box.hidden = true;
+    const list = root.querySelector("[data-cal-slots-list]");
+    if (list) list.innerHTML = "";
   }
 }
 
-function selectDate(root, iso, dateKey) {
+function selectDate(root, iso) {
   selectedDate = iso;
   selectedTime = "";
-
-  // Обновляем скрытый инпут даты
   const dateInput = document.querySelector('[data-form] [name="date"]');
   if (dateInput) {
     dateInput.value = iso;
     dateInput.dataset.touched = "true";
     dateInput.dispatchEvent(new Event("change"));
   }
-
-  // Сбрасываем время
   const timeInput = document.querySelector('[data-form] [name="time"]');
-  if (timeInput) {
-    timeInput.value = "";
-  }
+  if (timeInput) timeInput.value = "";
+
+  const svc = document.querySelector('[data-form] [name="service"]');
+  if (svc) svc.dispatchEvent(new Event("change"));
 
   render(root);
-  renderSlots(root, dateKey);
 }
 
-function renderSlots(root, dateKey) {
-  const slotsBox = root.querySelector("[data-cal-slots]");
-  const slotsList = root.querySelector("[data-cal-slots-list]");
-  if (!slotsBox || !slotsList) return;
-
-  slotsList.innerHTML = "";
-
-  if (!sheetLoaded) {
-    slotsBox.hidden = true;
+function renderSlots(root) {
+  const box = root.querySelector("[data-cal-slots]");
+  const list = root.querySelector("[data-cal-slots-list]");
+  if (!box || !list) return;
+  list.innerHTML = "";
+  if (!loaded) {
+    box.hidden = true;
     return;
   }
 
-  const freeSlots = getFreeSlots(dateKey);
-  slotsBox.hidden = false;
+  const slots = freeSlots(keyFromISO(selectedDate)).sort((a, b) =>
+    a.time.localeCompare(b.time),
+  );
+  box.hidden = false;
 
-  if (freeSlots.length === 0) {
-    const empty = document.createElement("span");
-    empty.className = "calendar__slots-empty";
-    empty.textContent = "На эту дату нет свободных слотов";
-    slotsList.append(empty);
+  if (!slots.length) {
+    list.innerHTML =
+      '<span class="calendar__slots-empty">На эту дату нет свободных слотов</span>';
     return;
   }
 
-  // Сортируем по времени
-  freeSlots.sort((a, b) => a.time.localeCompare(b.time));
+  const service = (
+    document.querySelector('[data-form] [name="service"]')?.value || ""
+  ).toLowerCase();
 
-  freeSlots.forEach((slot) => {
+  slots.forEach((s) => {
+    const busy = service !== "" && s.busyOnce.includes(service);
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "calendar__slot";
-    btn.textContent = slot.time;
+    btn.className =
+      "calendar__slot" +
+      (busy ? " calendar__slot--busy" : "") +
+      (!busy && s.left <= 3 ? " calendar__slot--few" : "") +
+      (!busy && s.time === selectedTime ? " calendar__slot--selected" : "");
+    btn.disabled = busy;
+    btn.title = busy
+      ? "Эта услуга уже записана на данное время"
+      : `Свободно мест: ${s.left}`;
 
-    if (slot.time === selectedTime) {
-      btn.classList.add("calendar__slot--selected");
-    }
+    const time = document.createElement("span");
+    time.className = "calendar__slot-time";
+    time.textContent = s.time;
 
-    btn.addEventListener("click", () => selectTime(root, slot.time));
-    slotsList.append(btn);
+    const left = document.createElement("span");
+    left.className = "calendar__slot-left";
+    left.textContent = busy
+      ? "занято"
+      : s.left <= 3
+        ? `осталось ${s.left}`
+        : `свободно: ${s.left}`;
+
+    btn.append(time, left);
+    if (!busy) btn.addEventListener("click", () => selectTime(s.time));
+    list.append(btn);
   });
 }
 
-function selectTime(root, time) {
+function selectTime(time) {
   selectedTime = time;
-
   const timeInput = document.querySelector('[data-form] [name="time"]');
   if (timeInput) {
     timeInput.value = time;
@@ -236,8 +266,8 @@ function selectTime(root, time) {
     timeInput.dispatchEvent(new Event("change"));
   }
 
-  // Перерисовать слоты чтобы подсветить выбранный
-  const parts = selectedDate.split("-");
-  const key = `${parts[2]}.${parts[1]}.${parts[0]}`;
-  renderSlots(root, key);
+  const svc = document.querySelector('[data-form] [name="service"]');
+  if (svc) svc.dispatchEvent(new Event("change"));
+
+  renderSlots(document.querySelector("[data-calendar]"));
 }
