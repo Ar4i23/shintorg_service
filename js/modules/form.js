@@ -3,6 +3,21 @@ import { openModal } from "./modal.js";
 import { sendToTelegram } from "./telegram.js";
 import { API_URL, refreshSchedule, getSelectedDateISO } from "./calendar.js";
 
+// ID устройства: живёт в браузере, чтобы считать заявки с одного компьютера
+function getDeviceId() {
+  try {
+    let id = localStorage.getItem("st_device_id");
+    if (!id) {
+      id =
+        "d" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+      localStorage.setItem("st_device_id", id);
+    }
+    return id;
+  } catch {
+    return "";
+  }
+}
+
 export function initForm() {
   const form = document.querySelector("[data-form]");
   if (!form) return;
@@ -19,7 +34,7 @@ export function initForm() {
     });
   }
 
-  // Телефон: маска +7 (___) ___-__-__, буквы не печатаются
+  // Телефон: маска +7 (___) ___-__-__
   const phoneInput = form.querySelector('[name="phone"]');
   if (phoneInput) {
     phoneInput.addEventListener("input", () => {
@@ -62,6 +77,7 @@ export function initForm() {
       service: form.service.value,
       date: new Date(form.date.value).toLocaleDateString("ru-RU"),
       time: form.time.value || "—",
+      device: getDeviceId(),
     };
 
     const button = form.querySelector('[type="submit"]');
@@ -76,8 +92,6 @@ export function initForm() {
       form.reset();
       resetValidation(form);
       if (errorEl) errorEl.hidden = true;
-
-      // Счётчики обновятся СРАЗУ: дата остаётся, время сбрасывается
       refreshSchedule("keep-date");
       const dateInput = form.querySelector('[name="date"]');
       const iso = getSelectedDateISO();
@@ -102,8 +116,10 @@ export function initForm() {
       else if (result.error === "full")
         fail("Это время только что полностью заняли — выберите другое.");
       else if (result.error === "once-busy")
+        fail("Эта услуга уже записана на данный час — выберите другое время.");
+      else if (result.error === "user-limit")
         fail(
-          "Компьютерная диагностика уже записана на это время — выберите другой час.",
+          "С одного номера можно заказать одну услугу в сутки. Если нужно больше — позвоните нам, запишем вручную!",
         );
       else {
         await sendToTelegram(payload);
