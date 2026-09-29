@@ -45,3 +45,12 @@
     height: 480px;
   }
 }
+
+
+/* Действия в первом экране: основной CTA + быстрый звонок */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}

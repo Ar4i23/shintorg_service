@@ -1,7 +1,7 @@
 import { getServiceConflict } from "./calendar.js";
 
 const validators = {
-  name: (value) => /^[а-яё]{2,}$/i.test(value.trim()),
+  name: (value) => /^[а-яё]{2,}$/iu.test(value.trim()),
   phone: (value) => {
     let d = value.replace(/\D/g, "");
     if (d.length === 10 && d.startsWith("9")) d = "7" + d;

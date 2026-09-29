@@ -13,6 +13,14 @@
     <link rel="icon" type="image/png" href="img/favicon.png" />
     <link rel="apple-touch-icon" href="img/favicon.png" />
     <meta name="theme-color" content="#23272f" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Шинторг Сервис — автосервис в Воронеже" />
+    <meta property="og:description" content="Шиномонтаж, диагностика, ремонт ходовой и двигателя, ТО. Запись на обслуживание в Воронеже." />
+    <meta property="og:url" content="https://ar4i23.github.io/shintorg_service/" />
+    <meta property="og:image" content="https://ar4i23.github.io/shintorg_service/img/master_1.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://ar4i23.github.io/shintorg_service/" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,6 +29,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="preload" as="image" href="img/master_1.webp" fetchpriority="high" />
   </head>
   <body>
     <!-- Шапка: лого + навигация + кнопка -->
@@ -29,8 +38,11 @@
         <a class="header__logo" href="#hero">
           <img
             class="header__logo-img"
-            src="img/logo.png"
-            alt="Автосервис «Вася починит!», регион 36"
+            src="img/logo.webp"
+            alt="Логотип автосервиса «Шинторг Сервис»"
+            width="54"
+            height="54"
+            decoding="async"
           />
         </a>
 
@@ -83,18 +95,27 @@
             развал-схождение, ремонт ходовой и двигателя, ТО. Честные цены и
             гарантия 1 год.
           </p>
-          <button
-            class="button hero__button"
-            type="button"
-            data-scroll="#request"
-          >
-            Записаться
-          </button>
+          <div class="hero__actions">
+            <button
+              class="button hero__button"
+              type="button"
+              data-scroll="#request"
+            >
+              Записаться
+            </button>
+            <a class="button button--secondary hero__phone" href="tel:+79529554747">
+              Позвонить
+            </a>
+          </div>
         </div>
         <figure class="hero__photo" data-reveal>
           <img
-            src="img/master_1.png"
+            src="img/master_1.webp"
             alt="Мастер автосервиса «Шинторг Сервис»"
+            width="1024"
+            height="1024"
+            fetchpriority="high"
+            decoding="async"
           />
         </figure>
       </div>
@@ -794,8 +815,12 @@
       <div class="guarantee__inner container">
         <figure class="guarantee__photo" data-reveal>
           <img
-            src="img/master_2.png"
+            src="img/master_2.webp"
             alt="Мастер автосервиса «Шинторг Сервис»"
+            width="814"
+            height="1086"
+            loading="lazy"
+            decoding="async"
           />
         </figure>
         <div class="guarantee__content">
@@ -970,7 +995,7 @@
                 autocomplete="name"
               />
               <span class="cta__error" hidden
-                >Имя: минимум 2 буквы, русские или латинские, без пробелов, цифр
+                >Имя: минимум 2 русские буквы, без пробелов, цифр
                 и символов</span
               >
             </div>
@@ -1149,32 +1174,10 @@
           </div>
 
           <div class="contacts__card" data-reveal>
-            <span class="contacts__label">Мы на связи</span>
-            <div class="contacts__socials">
-              <a
-                class="contacts__social contacts__social--tg"
-                href="https://t.me/USERNAME"
-                target="_blank"
-                rel="noopener"
-              >
-                <svg viewBox="0 0 24 24">
-                  <path d="M22 2L11 13" />
-                  <path d="M22 2l-7 20-4-9-9-4z" />
-                </svg>
-                Telegram
-              </a>
-              <a
-                class="contacts__social contacts__social--max"
-                href="https://max.ru/USERNAME"
-                target="_blank"
-                rel="noopener"
-              >
-                <svg viewBox="0 0 24 24"><path d="M4 19V5l6 8 6-8v14" /></svg>
-                MAX
-              </a>
-            </div>
+            <span class="contacts__label">Запись и связь</span>
+            <a class="contacts__phone" href="tel:+79529554747">+7 952 955 47 47</a>
             <span class="contacts__note"
-              >Отвечаем быстро — пишите в любой мессенджер</span
+              >Заявку с сайта можно оставить через форму — она передаётся мастеру для обработки.</span
             >
           </div>
         </div>
@@ -1187,8 +1190,12 @@
         <div class="footer__logo">
           <img
             class="footer__logo-img"
-            src="img/logo.png"
+            src="img/logo.webp"
             alt="Шинторг Сервис"
+            width="54"
+            height="54"
+            loading="lazy"
+            decoding="async"
           />
           <span class="footer__logo-name">«Шинторг Сервис»</span>
         </div>
@@ -1196,7 +1203,7 @@
           <a class="footer__link" href="#services">Услуги</a>
           <a class="footer__link" href="#guarantee">Гарантия</a>
           <a class="footer__link" href="#request">Записаться</a>
-          <a class="footer__link" href="#">Политика конфиденциальности</a>
+          <a class="footer__link" href="privacy.html">Политика конфиденциальности</a>
           <!-- В футере -->
           <a
             class="footer__link"

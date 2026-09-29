@@ -1,6 +1,5 @@
 import { validateField, validateForm, resetValidation } from "./validation.js";
 import { openModal } from "./modal.js";
-import { sendToTelegram } from "./telegram.js";
 import { API_URL, refreshSchedule, getSelectedDateISO } from "./calendar.js";
 
 // ID устройства: живёт в браузере, чтобы считать заявки с одного компьютера
@@ -16,6 +15,11 @@ function getDeviceId() {
   } catch {
     return "";
   }
+}
+
+function formatDateRU(iso) {
+  const [year, month, day] = String(iso || "").split("-");
+  return year && month && day ? `${day}.${month}.${year}` : "—";
 }
 
 export function initForm() {
@@ -75,7 +79,7 @@ export function initForm() {
       name: form.name.value.trim(),
       phone: form.phone.value.trim(),
       service: form.service.value,
-      date: new Date(form.date.value).toLocaleDateString("ru-RU"),
+      date: formatDateRU(form.date.value),
       time: form.time.value || "—",
       device: getDeviceId(),
     };
@@ -116,18 +120,16 @@ export function initForm() {
       else if (result.error === "full")
         fail("Это время только что полностью заняли — выберите другое.");
       else if (result.error === "once-busy")
-        fail("Эта услуга уже записана на данный час — выберите другое время.");
+        fail("Эта услуга уже записана на выбранное время — выберите другое.");
       else if (result.error === "user-limit")
         fail(
-          "С одного номера можно заказать одну услугу в сутки. Если нужно больше — позвоните нам, запишем вручную!",
+          "С этого номера уже есть запись на сегодня. Если нужна ещё одна услуга — позвоните нам, запишем вручную.",
         );
-      else {
-        await sendToTelegram(payload);
-        success();
-      }
-    } catch {
-      await sendToTelegram(payload);
-      success();
+      else
+        fail("Не удалось отправить заявку. Позвоните нам по телефону — мы запишем вас вручную.");
+    } catch (error) {
+      console.error("Ошибка отправки заявки:", error);
+      fail("Не удалось отправить заявку. Позвоните нам по телефону — мы запишем вас вручную.");
     } finally {
       button.disabled = false;
     }

@@ -43,3 +43,16 @@
   transform: none;
   box-shadow: none;
 }
+
+
+.button--secondary {
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid var(--color-line);
+}
+
+.button--secondary:hover {
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+}
