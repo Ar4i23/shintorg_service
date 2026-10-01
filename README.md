@@ -2,17 +2,15 @@
 
 Адаптивный коммерческий сайт автосервиса **«Шинторг Сервис»** в Воронеже с онлайн-записью и живым расписанием.
 
-&lt;p align="center"&gt;
-&lt;a href="https://ar4i23.github.io/shintorg_service/"&gt;
-&lt;img src="img/preview.webp" width="90%" alt="Шинторг Сервис — превью проекта"&gt;
-&lt;/a&gt;
-&lt;/p&gt;
+<p align="center">
+  <a href="https://ar4i23.github.io/shintorg_service/">
+    <img src="img/preview.webp" width="90%" alt="Шинторг Сервис — превью проекта">
+  </a>
+</p>
 
-&lt;p align="center"&gt;
-&lt;a href="https://ar4i23.github.io/shintorg_service/"&gt;🌐 Live Demo&lt;/a&gt;
-•
-&lt;a href="https://github.com/Ar4i23/shintorg_service"&gt;📦 GitHub&lt;/a&gt;
-&lt;/p&gt;
+<p align="center">
+  <a href="https://ar4i23.github.io/shintorg_service/">🌐 Live Demo</a>
+</p>
 
 ---
 
