@@ -96,7 +96,7 @@ export function initForm() {
       form.reset();
       resetValidation(form);
       if (errorEl) errorEl.hidden = true;
-      refreshSchedule("keep-date");
+      refreshSchedule("keep-date"); // слоты пересчитаются: 5 -> 4
       const dateInput = form.querySelector('[name="date"]');
       const iso = getSelectedDateISO();
       if (dateInput && iso) dateInput.value = iso;
@@ -123,13 +123,21 @@ export function initForm() {
         fail("Эта услуга уже записана на выбранное время — выберите другое.");
       else if (result.error === "user-limit")
         fail(
-          "С этого номера уже есть запись на сегодня. Если нужна ещё одна услуга — позвоните нам, запишем вручную.",
+          "У вас уже есть активная запись. Если нужна ещё одна услуга — позвоните нам, запишем вручную.",
         );
+      else if (result.error === "closed")
+        fail("В этот день сервис не работает — выберите другую дату.");
+      else if (result.error === "invalid")
+        fail("Проверьте данные формы и попробуйте ещё раз.");
       else
-        fail("Не удалось отправить заявку. Позвоните нам по телефону — мы запишем вас вручную.");
+        fail(
+          "Не удалось отправить заявку. Позвоните нам по телефону — мы запишем вас вручную.",
+        );
     } catch (error) {
       console.error("Ошибка отправки заявки:", error);
-      fail("Не удалось отправить заявку. Позвоните нам по телефону — мы запишем вас вручную.");
+      fail(
+        "Не удалось отправить заявку. Позвоните нам по телефону — мы запишем вас вручную.",
+      );
     } finally {
       button.disabled = false;
     }

@@ -15,8 +15,22 @@ export function initPreselect() {
       document
         .querySelector("#request")
         ?.scrollIntoView({ behavior: "smooth" });
+
       setTimeout(() => {
-        form.querySelector('[name="name"]')?.focus({ preventScroll: true });
+        const nameInput = form.querySelector('[name="name"]');
+        const phoneInput = form.querySelector('[name="phone"]');
+
+        // Помечаем обязательные поля как «тронутые» и прогоняем через
+        // ту же валидацию, что и при ручном заполнении — пустые поля
+        // (имя и телефон) сразу подсветятся с подсказками
+        [nameInput, phoneInput].forEach((el) => {
+          if (!el) return;
+          el.dataset.touched = "true";
+          el.dispatchEvent(new Event("input", { bubbles: true }));
+          el.dispatchEvent(new Event("blur", { bubbles: true }));
+        });
+
+        nameInput?.focus({ preventScroll: true });
       }, 600);
     });
   });

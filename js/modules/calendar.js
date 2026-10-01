@@ -1,6 +1,6 @@
 // Мини-бэкенд в Google-таблице (Apps Script)
 export const API_URL =
-  "https://script.google.com/macros/s/AKfycbweXF_PQvTEFp75z3j34uHfoM0yY1D6jsvX7v9yhk38MdDbgqDeFKozb3CC7hUSRzM2Jg/exec";
+  "https://script.google.com/macros/s/AKfycbxM-Z3sJLLvR4DyYQknLY0piycsmEXKOETyWRwqXe1s_UQ1HYhmXP-xUBWodIV18UvSAQ/exec";
 
 const MONTHS_AHEAD = 3;
 const MONTHS = [
@@ -270,4 +270,9 @@ function selectTime(time) {
   if (svc) svc.dispatchEvent(new Event("change"));
 
   renderSlots(document.querySelector("[data-calendar]"));
+}
+// Перезагрузка расписания после успешной заявки (вызывается из form.js)
+export function refreshCalendar() {
+  const root = document.querySelector("[data-calendar]");
+  if (root) load(root);
 }

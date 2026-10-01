@@ -158,3 +158,11 @@
   caret-color: var(--color-text);
   transition: background-color 5000s ease-in-out 0s;
 }
+.cta__policy-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cta__policy-link:hover {
+  opacity: 0.8;
+}

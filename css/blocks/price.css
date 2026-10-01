@@ -41,7 +41,7 @@
 
 .price__tab:hover {
   border-color: var(--color-accent);
-  color: var(--color-accent);
+  color: var(--color-text);
 }
 
 .price__tab--active {
@@ -215,6 +215,8 @@
 }
 
 .price__footer-phone svg {
+  transform-box: fill-box; /* точка отсчёта — сама иконка, а не холст */
+  transform-origin: center;
   width: 18px;
   height: 18px;
   fill: none;
