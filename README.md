@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://ar4i23.github.io/shintorg_service/">🌐 Live Demo</a>
+  <a href="https://shintorg-service.netlify.app/">🌐 Live Demo</a>
 </p>
 
 ---
