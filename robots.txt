@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ar4i23.github.io/shintorg_service/sitemap.xml
