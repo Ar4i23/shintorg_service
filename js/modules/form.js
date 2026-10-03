@@ -26,15 +26,16 @@ export function initForm() {
   const form = document.querySelector("[data-form]");
   if (!form) return;
 
-  // Имя: первая буква заглавная, остальные строчные
+  // Имя: только русские буквы, пробел и дефис. Латиница блокируется сразу
+  // при вводе (если раскладка английская — буквы просто не появятся).
+  // Первая буква — заглавная.
   const nameInput = form.querySelector('[name="name"]');
   if (nameInput) {
     nameInput.addEventListener("input", () => {
-      const v = nameInput.value;
-      const fixed = v
-        ? v.charAt(0).toUpperCase() + v.slice(1).toLowerCase()
-        : v;
-      if (fixed !== v) nameInput.value = fixed;
+      let v = nameInput.value;
+      v = v.replace(/[^А-Яа-яЁё\s-]/g, ""); // всё кроме кириллицы/пробела/дефиса — вырезаем
+      v = v ? v.charAt(0).toUpperCase() + v.slice(1).toLowerCase() : v;
+      if (v !== nameInput.value) nameInput.value = v;
     });
   }
 
